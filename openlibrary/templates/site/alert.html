@@ -1,9 +1,41 @@
 $:get_donation_include('true')
-<div id="topNotice">
-  <div class="topNotice-container">
-    <div class="topNotice-left">
-      <a href="https://archive.org" data-ol-link-track="TopBarArchive" target="_blank"><span class="topNotice-logo iconochive-logo"></span></a>
-      <a href="https://archive.org" data-ol-link-track="TopBarArchive" target="_blank"><img class="topNotice-name" src="/static/images/internet-archive-logo-text.png" alt="Internet Archive logo" /></a>
+
+<link href="https://fonts.googleapis.com/css?family=Poppins:100,300,500,700" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="/static/css/tmp.css"/>
+
+<header>
+  <div id="topbar">
+    <div id="main-logo">
+      <a class="logo" href="https://archive.org">
+	<img class="logo-icon" src="/static/images/logo.png">
+	<h1 class="logo-txt">
+	  <span class="logo-bold">OPEN</span>Library
+	</h1>
+      </a>
+    </div>
+    <div class="dropdown-search">
+      <div class="searchbar">
+	<a href="" class="searchbtn"></a>
+	<div class="searchbox">
+	  <form action="https://openlibrary.org/search" method="get">
+	    <input type="text" name="q" class="search_text" placeholder="Search"
+		   autocomplete="off"/>
+	    <div name="search_button" class="search_button">
+	      <span class="caret"></span>
+	    </div>
+	  </form>
+	</div>
+      </div>
+      <div id="search-dropdown" class="dropdown-section">
+	<div class="dropdown-items-container">
+	  <div class="dropdown-items">
+	    <a href="/search"><img src="/static/images/books.png"/> <span>Books</span></a>
+	    <a href=""><img src="/static/images/authors.png"/> <span>Authors</span></a>
+	    <a href=""><img src="/static/images/subjects.png"/> <span>Subjects</span></a>
+	    <a href=""><img src="/static/images/lists.png"/> <span>Lists</span></a>
+	  </div>
+	</div>
+      </div>
     </div>
   </div>
 </div>
