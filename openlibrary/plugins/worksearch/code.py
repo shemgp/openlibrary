@@ -34,6 +34,9 @@ if hasattr(config, 'plugin_worksearch'):
     solr_subject_host = config.plugin_worksearch.get('subject_solr', 'localhost')
     solr_subject_select_url = get_solr_select_url(solr_subject_host, 'subjects')
 
+    solr_lists_host = config.plugin_worksearch.get('lists_solr', 'localhost')
+    solr_lists_select_url = get_solr_select_url(solr_subject_host, 'lists')
+
     solr_author_host = config.plugin_worksearch.get('author_solr', 'localhost')
     solr_author_select_url = get_solr_select_url(solr_author_host, 'authors')
 
@@ -642,6 +645,23 @@ def parse_search_response(json_data):
         if error.startswith(solr_error):
             error = error[len(solr_error):]
         return {'error': error}
+
+class list_search(delegate.page):
+    path = '/search/lists'
+
+    def GET(self):
+        if 'env' not in web.ctx:
+            delegate.fakeload()
+
+        i = web.input(q='', offset='0', limit='10')
+        keys = web.ctx.site.things({
+            "type": "/type/list", "name~": i.q,
+            "limit": int(i.limit), "offset": int(i.offset)
+        })
+        lists = web.ctx.site.get_many(keys)
+        return render_template('search/lists.tmpl', [l.dict() for l in lists])
+
+
 
 class subject_search(delegate.page):
     path = '/search/subjects'

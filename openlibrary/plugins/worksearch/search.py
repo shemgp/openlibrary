@@ -21,6 +21,13 @@ def get_authors_solr():
         base_url = "http://%s/solr/authors" % config.plugin_worksearch.get('author_solr')
     return Solr(base_url)
 
+def get_lists_solr():
+    if config.get('single_core_solr'):
+        base_url = "http://%s/solr" % config.plugin_worksearch.get('lists_solr')
+    else:
+        base_url = "http://%s/solr/subjects" % config.plugin_worksearch.get('lists_solr')
+    return Solr(base_url)
+
 def get_subjects_solr():
     if config.get('single_core_solr'):
         base_url = "http://%s/solr" % config.plugin_worksearch.get('subjects_solr')
